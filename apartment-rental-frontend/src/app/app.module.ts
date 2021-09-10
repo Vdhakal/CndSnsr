@@ -8,9 +8,12 @@ import { PropertyCardComponent } from './property/property-card/property-card.co
 import { PropertyListComponent } from './property/property-list/property-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
+import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 
 const appRoutes: Routes = [
   {path: '', component:PropertyListComponent},
+  {path: 'one-night', component:PropertyListComponent},
+  {path: 'stripper-detail/:id', component:PropertyDetailComponent},
   {path: 'add-strippers', component:AddPropertyComponent}
 ]
 
@@ -20,7 +23,8 @@ const appRoutes: Routes = [
     PropertyCardComponent,
     PropertyListComponent,
     NavBarComponent,
-    AddPropertyComponent
+    AddPropertyComponent,
+    PropertyDetailComponent
    ],
   imports: [
     BrowserModule,
