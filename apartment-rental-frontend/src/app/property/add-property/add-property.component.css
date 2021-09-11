@@ -1,6 +1,5 @@
-.error-block {
+.name-error-block .price-error-block {
   color: red;
-  
 }
 .ng-invalid.ng-touched {
   border-color: red;
