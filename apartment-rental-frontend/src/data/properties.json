@@ -1,39 +1,56 @@
 [{
   "Id": 1,
+  "SellRent":2,
   "Name": "Vaskar",
   "Type": "Big D",
   "Price":2200
 },
 {
   "Id": 2,
+  "SellRent":1,
   "Name": "Emerald",
   "Type": "Big Butt",
-  "Price":1000
+  "Price":1000,
+  "Image": "emerald.jpg"
 },
 {
   "Id": 3,
+  "SellRent":2,
   "Name": "Sushant",
   "Type": "6 Pack",
-  "Price":1800
+  "Price":1800,
+  "Image": "sushant.jpg"
 },
 {
   "Id": 4,
+  "SellRent":2,
   "Name": "Tami",
   "Type": "Big Balls",
-  "Price":4100
+  "Price":4100,
+  "Image": "tami.jpeg"
 },
 {
   "Id": 5,
+  "SellRent":1,
   "Name": "Suraj",
   "Type": "Shitty Ass",
-  "Price":420
-
-
-
+  "Price":420,
+  "Image": "suraj.jpg"
 },
 {
   "Id": 6,
+  "SellRent":1,
   "Name": "Som",
   "Type": "Sexy Thighs",
-  "Price":6900
+  "Price":6900,
+  "Image": "som.png"
+},
+{
+  "Id": 7,
+  "SellRent":1,
+  "Name": "Anish",
+  "Type": "Wavy Hair",
+  "Price":6900,
+  "Image": "anish.jpg"
 }]
+

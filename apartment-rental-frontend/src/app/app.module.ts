@@ -13,7 +13,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 
 const appRoutes: Routes = [
   {path: '', component:PropertyListComponent},
-  {path: 'one-night', component:PropertyListComponent},
+  {path: 'c2c', component:PropertyListComponent},
   {path: 'stripper-detail/:id', component:PropertyDetailComponent},
   {path: 'add-strippers', component:AddPropertyComponent},
   {path:'**', component:ErrorPageComponent}

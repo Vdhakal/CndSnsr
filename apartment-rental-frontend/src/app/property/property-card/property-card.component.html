@@ -1,7 +1,8 @@
 
 <div class="card">
   <div class="card-img-wrapper">
-    <img class="card-img-top"src="assets\image\stripper.jpg" >
+    <img *ngIf="property.Image" class="card-img-top"src="assets\image\{{property.Image}}" >
+    <img *ngIf="!property.Image" class="card-img-top"src="assets\image\stripper.jpg" >
     <ul class="list-inline text-center member-icons animate">
       <li class="list-inline-item">
         <button class="btn btn-primary" routerLink="/stripper-detail/{{property.Id}}"><i class="fas fa-edit"></i></button>
