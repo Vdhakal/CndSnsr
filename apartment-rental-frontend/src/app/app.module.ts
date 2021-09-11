@@ -10,13 +10,17 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserSignupComponent } from './user/user-signup/user-signup.component';
 
 const appRoutes: Routes = [
   {path: '', component:PropertyListComponent},
   {path: 'c2c', component:PropertyListComponent},
   {path: 'stripper-detail/:id', component:PropertyDetailComponent},
   {path: 'add-strippers', component:AddPropertyComponent},
+  {path: 'user/login', component:UserLoginComponent},
+  {path: 'user/signup', component:UserSignupComponent},
   {path:'**', component:ErrorPageComponent}
 ]
 
@@ -28,13 +32,16 @@ const appRoutes: Routes = [
     NavBarComponent,
     AddPropertyComponent,
     PropertyDetailComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    UserLoginComponent,
+    UserSignupComponent
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
