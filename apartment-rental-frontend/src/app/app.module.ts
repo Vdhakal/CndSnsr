@@ -13,6 +13,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserSignupComponent } from './user/user-signup/user-signup.component';
+import { UserService } from './services/user.service';
+import { HousingService } from './services/housing.service';
 
 const appRoutes: Routes = [
   {path: '', component:PropertyListComponent},
@@ -43,7 +45,10 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    HousingService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

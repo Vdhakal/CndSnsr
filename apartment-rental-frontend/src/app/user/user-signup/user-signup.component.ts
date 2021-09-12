@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-signup',
@@ -9,40 +10,57 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class UserSignupComponent implements OnInit {
 
   registrationForm: FormGroup;
+  user: any = {};
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
-    this.registrationForm = new FormGroup({
-      userName : new FormControl('',Validators.required),
-      email : new FormControl(null,[Validators.required, Validators.email]),
-      password : new FormControl(null,[Validators.required, Validators.minLength(8)]),
-      confirmPassword : new FormControl(null,[Validators.required]),
-      mobile : new FormControl(null,[Validators.required, Validators.maxLength(10)]),
-    }, this.passwordMatchingValidator);
+    // this.registrationForm = new FormGroup({
+    //   userName : new FormControl('',Validators.required),
+    //   email : new FormControl(null,[Validators.required, Validators.email]),
+    //   password : new FormControl(null,[Validators.required, Validators.minLength(8)]),
+    //   confirmPassword : new FormControl(null,[Validators.required]),
+    //   mobile : new FormControl(null,[Validators.required, Validators.maxLength(10)]),
+    // }, this.passwordMatchingValidator);
+    this.createRegistrationForm();
   }
-  passwordMatchingValidator(fg: FormGroup): Validators{
-    return fg.get('password').value === fg.get('confirmPassword').value ? null:
-    {notmatched : true}
+  createRegistrationForm() {
+    this.registrationForm = this.fb.group({
+      userName: ['', Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmPassword: [null, [Validators.required]],
+      mobile: [null, [Validators.required, Validators.maxLength(10)]],
+    }, { validators: this.passwordMatchingValidator })
+  }
+  passwordMatchingValidator(fg: FormGroup): Validators {
+    return fg.get('password').value === fg.get('confirmPassword').value ? null :
+      { notmatched: true }
 
   }
-  onSubmit(){
+  onSubmit() {
     console.log(this.registrationForm);
+    if (this.registrationForm.valid) {
+      this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userService.addUser(this.user);
+      this.registrationForm.reset();
+    }
   }
-  get userName(){
+
+  get userName() {
     return this.registrationForm.get('userName') as FormControl;
   }
-  get email(){
+  get email() {
     return this.registrationForm.get('email') as FormControl;
   }
-  get password(){
+  get password() {
     return this.registrationForm.get('password') as FormControl;
   }
-  get confirmPassword(){
+  get confirmPassword() {
     return this.registrationForm.get('confirmPassword') as FormControl;
   }
 
-  get mobile(){
+  get mobile() {
     return this.registrationForm.get('mobile') as FormControl;
   }
 }
