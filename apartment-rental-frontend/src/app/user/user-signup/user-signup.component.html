@@ -4,30 +4,82 @@
             <div class="card">
                 <h2 class="card-title text-center">Sign Up</h2>
                 <div class="card-body py-md-4">
-                    <form _lpchecked="1">
+                    <form _lpchecked="1" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" placeholder="Name" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Email" />
+                            <span class="errorBlock" *ngIf="
+                  !registrationForm.get('userName').valid &&
+                  registrationForm.get('userName').touched
+                ">Name cannot be blank</span
+              >
+              <input
+                type="text "
+                class="form-control"
+                formControlName="userName"
+                id="name "
+                placeholder="Name "
+              />
+            </div>
+            <div class="form-group">
+              <span class="errorBlock" *ngIf="!email.valid && email.touched">
+                <span *ngIf="email.hasError('required')">
+                  Email Address cannot be blank
+                </span>
+                            <span *ngIf="email.hasError('email')"> Invalid Email </span>
+                            </span>
+                            <input type="email " class="form-control" formControlName="email" id="email " placeholder="Email " />
                         </div>
 
                         <div class="form-group">
-                            <input type="password" class="form-control" id="password" placeholder="Password" />
+                            <span class="errorBlock" *ngIf="!password.valid && password.touched">
+                <span *ngIf="password.errors['required']">
+                  Password cannot be blank
+                </span>
+                            <span *ngIf="password.hasError('minlength')">
+                  Password must be more than 8 characters long</span
+                >
+              </span>
+                            <input type=" password " class="form-control" formControlName="password" id="password " placeholder="Password " />
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" />
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="mobile" placeholder="Mobile" />
-                        </div>
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <a routerLink="/user/login">Login Instead</a>
-                            <button class="btn btn-primary">Create Account</button>
-                        </div>
-                    </form>
-                </div>
+                            <span class="errorBlock" *ngIf="!confirmPassword.valid && confirmPassword.touched">
+                <span *ngIf="confirmPassword.errors['required']">
+                  Please confirm password
+                </span>
+                            </span>
+                            <span *ngIf="
+                  registrationForm.hasError('notmatched') &&
+                  confirmPassword.valid
+                ">
+                Passwords do not match</span
+              >
+              <input
+                type="password "
+                class="form-control"
+                formControlName="confirmPassword"
+                id="confirm-password "
+                placeholder="Confirm Password "
+              />
             </div>
+            <div class="form-group">
+              <input
+                type="number "
+                class="form-control"
+                id="mobile "
+                formControlName="mobile"
+                placeholder="Mobile "
+              />
+            </div>
+            <div
+              class="d-flex flex-row align-items-center justify-content-between"
+            >
+              <a routerLink="/user/login">Login Instead</a>
+              <button type="submit " class="btn btn-primary">
+                Create Account
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
