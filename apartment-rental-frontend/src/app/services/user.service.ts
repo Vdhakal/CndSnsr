@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
 
 constructor() { }
+
 addUser(user){
   let users=[];
   if(localStorage.getItem('Users')){

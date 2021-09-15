@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-user-signup',
@@ -10,9 +12,9 @@ import { UserService } from 'src/app/services/user.service';
 export class UserSignupComponent implements OnInit {
 
   registrationForm: FormGroup;
-  user: any = {};
-
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  user: User;
+  userSubmitted: boolean = false;
+  constructor(private fb: FormBuilder, private userService: UserService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
     // this.registrationForm = new FormGroup({
@@ -40,10 +42,24 @@ export class UserSignupComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.registrationForm);
+    this.userSubmitted = true;
     if (this.registrationForm.valid) {
-      this.user = Object.assign(this.user, this.registrationForm.value);
-      this.userService.addUser(this.user);
+      // this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userService.addUser(this.userData());
       this.registrationForm.reset();
+      this.userSubmitted = false;
+      this.alertifyService.success("Sign Up successful!");
+    } else {
+      this.alertifyService.error("Please enter required information");
+
+    }
+  }
+  userData(): User {
+    return this.user = {
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      mobile: this.mobile.value
     }
   }
 
@@ -59,7 +75,6 @@ export class UserSignupComponent implements OnInit {
   get confirmPassword() {
     return this.registrationForm.get('confirmPassword') as FormControl;
   }
-
   get mobile() {
     return this.registrationForm.get('mobile') as FormControl;
   }
