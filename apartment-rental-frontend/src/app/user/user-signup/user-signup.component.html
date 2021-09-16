@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             <span class="errorBlock" *ngIf="userSubmitted || (!password.valid && password.touched)">
-                <span *ngIf="password.hasError('require')">
+                <span *ngIf="password.hasError('required')">
                   Password cannot be blank
                 </span>
                             <span *ngIf="password.hasError('minlength')">
